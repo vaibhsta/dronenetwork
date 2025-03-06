@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~9.0.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+#deck-container canvas {
+  z-index: 1;
+  background: none;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  </body>
+  <script>
+    const container = document.getElementById('deck-container');
+    const jsonInput = {
+  "initialViewState": {
+    "latitude": 5.984978,
+    "longitude": 80.392144,
+    "pitch": 50,
+    "zoom": 16
+  },
+  "layers": [
+    {
+      "@@type": "ScatterplotLayer",
+      "data": [
+        {
+          "charge_level": "74%",
+          "flight_time": "20 min",
+          "lat": 5.981977816918096,
+          "lon": 80.39058574904159,
+          "pheromone_status": "Low",
+          "time_to_return": "10 min",
+          "tooltip": "\n    <div style='font-size: 16px; padding: 10px; line-height: 1.8;'>\n        <b>Location:</b> 5.98198, 80.39059<br>\n        <b>Charge Level:</b> 74%<br>\n        <b>Flight Time:</b> 20 min<br>\n        <b>Time to Return:</b> 10 min<br>\n        <b>Pheromone Status:</b> Low\n    </div>\n    "
+        },
+        {
+          "charge_level": "94%",
+          "flight_time": "29 min",
+          "lat": 5.988031280887953,
+          "lon": 80.3927335193905,
+          "pheromone_status": "Low",
+          "time_to_return": "13 min",
+          "tooltip": "\n    <div style='font-size: 16px; padding: 10px; line-height: 1.8;'>\n        <b>Location:</b> 5.98803, 80.39273<br>\n        <b>Charge Level:</b> 94%<br>\n        <b>Flight Time:</b> 29 min<br>\n        <b>Time to Return:</b> 13 min<br>\n        <b>Pheromone Status:</b> Low\n    </div>\n    "
+        },
+        {
+          "charge_level": "78%",
+          "flight_time": "19 min",
+          "lat": 5.981429101265144,
+          "lon": 80.39652963080177,
+          "pheromone_status": "Medium",
+          "time_to_return": "10 min",
+          "tooltip": "\n    <div style='font-size: 16px; padding: 10px; line-height: 1.8;'>\n        <b>Location:</b> 5.98143, 80.39653<br>\n        <b>Charge Level:</b> 78%<br>\n        <b>Flight Time:</b> 19 min<br>\n        <b>Time to Return:</b> 10 min<br>\n        <b>Pheromone Status:</b> Medium\n    </div>\n    "
+        }
+      ],
+      "getColor": "@@=[255, 0, 0, 200]",
+      "getPosition": "@@=[lon, lat]",
+      "getRadius": 30,
+      "getTooltip": "@@=tooltip",
+      "id": "c8ed58d1-d35f-4d62-bbfe-206032aa8d8b",
+      "pickable": true,
+      "tooltip": true
+    },
+    {
+      "@@type": "ScatterplotLayer",
+      "data": [
+        {
+          "lat": 5.984978,
+          "lon": 80.392144,
+          "tooltip": "Hub - Central Point"
+        }
+      ],
+      "getColor": "@@=[0, 150, 0, 255]",
+      "getPosition": "@@=[lon, lat]",
+      "getRadius": 50,
+      "getTooltip": "@@=tooltip",
+      "id": "fc123a00-84b5-41d9-8884-dfab2b9b816c",
+      "pickable": true,
+      "tooltip": true
+    },
+    {
+      "@@type": "LineLayer",
+      "data": [
+        {
+          "lat1": 5.981977816918096,
+          "lat2": 5.984978,
+          "lon1": 80.39058574904159,
+          "lon2": 80.392144
+        },
+        {
+          "lat1": 5.988031280887953,
+          "lat2": 5.984978,
+          "lon1": 80.3927335193905,
+          "lon2": 80.392144
+        },
+        {
+          "lat1": 5.981429101265144,
+          "lat2": 5.984978,
+          "lon1": 80.39652963080177,
+          "lon2": 80.392144
+        }
+      ],
+      "getColor": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "getSourcePosition": "@@=[lon1, lat1]",
+      "getTargetPosition": "@@=[lon2, lat2]",
+      "getWidth": 5,
+      "id": "9ce639f6-5e89-4ef1-a90f-68ef9b6e59b9"
+    },
+    {
+      "@@type": "LineLayer",
+      "data": [
+        {
+          "lat1": 5.981977816918096,
+          "lat2": 5.988031280887953,
+          "lon1": 80.39058574904159,
+          "lon2": 80.3927335193905
+        },
+        {
+          "lat1": 5.981977816918096,
+          "lat2": 5.981429101265144,
+          "lon1": 80.39058574904159,
+          "lon2": 80.39652963080177
+        },
+        {
+          "lat1": 5.988031280887953,
+          "lat2": 5.981429101265144,
+          "lon1": 80.3927335193905,
+          "lon2": 80.39652963080177
+        }
+      ],
+      "getColor": [
+        100,
+        100,
+        100,
+        180
+      ],
+      "getSourcePosition": "@@=[lon1, lat1]",
+      "getTargetPosition": "@@=[lon2, lat2]",
+      "getWidth": 2,
+      "id": "040acb6e-2710-4950-a57b-f0669b31d715"
+    }
+  ],
+  "mapProvider": "carto",
+  "mapStyle": "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+  "views": [
+    {
+      "@@type": "MapView",
+      "controller": true
+    }
+  ]
+};
+    const tooltip = {'html': '{tooltip}'};
+    const customLibraries = null;
+    const configuration = null;
+
+    const deckInstance = createDeck({
+                  container,
+      jsonInput,
+      tooltip,
+      customLibraries,
+      configuration
+    });
+
+  </script>
+</html>
+<div style="position: absolute; top: 10px; left: 10px; width: 280px; background: white; 
+            padding: 15px; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); 
+            font-family: Arial, sans-serif; font-size: 14px; line-height: 1.5;">
+    <h3 style="margin: 0 0 10px; text-align: center;">Farm Data</h3>
+    <table style="width: 100%; border-collapse: collapse;">
+        <tr><td><b>Wind Speed</b></td><td align="right">15 km/h</td></tr>
+        <tr><td><b>Time of Day</b></td><td align="right">07:41 PM</td></tr>
+        <tr><td><b>Season</b></td><td align="right">Maha (Major Harvest Season)</td></tr>
+        <tr><td><b>Farm Area</b></td><td align="right">3.8 hectares</td></tr>
+        <tr><td><b>Humidity</b></td><td align="right">80%</td></tr>
+    </table>
+</div>
